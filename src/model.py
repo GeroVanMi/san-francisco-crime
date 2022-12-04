@@ -11,7 +11,7 @@ y_clean = pd.read_csv('../data/y_train_cleaned.csv')
 x_clean.drop(['Address'], inplace=True, axis=1)
 
 # TODO: We want to use these variables later on, but they probably need to be normalized first
-x_clean.drop(['X', 'Y', 'year', 'month', 'day', 'hour', 'minute'], inplace=True, axis=1)
+x_clean.drop(['X', 'Y'], inplace=True, axis=1)
 
 x_train, x_test, y_train, y_test = train_test_split(x_clean, y_clean)
 
@@ -21,7 +21,7 @@ y_test = label_encoder.transform(y_test['Resolution'])
 
 model = Sequential(name='san_francisco_sequential')
 model.add(Input(shape=x_train.shape[1]))
-model.add(Dense(1000, activation='relu', name='hidden_layer'))
+model.add(Dense(5000, activation='relu', name='hidden_layer'))
 model.add(Dense(17, activation='softmax', name='output_layer'))
 
 print(model.summary())
@@ -32,7 +32,7 @@ model.fit(
     x_train,
     y_train,
     batch_size=16,
-    epochs=20,
+    epochs=100,
     validation_split=.1
 )
 
