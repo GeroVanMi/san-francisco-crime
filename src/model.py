@@ -10,9 +10,9 @@ import numpy as np
 x_clean = pd.read_csv('../data/x_train_cleaned.csv')
 y_clean = pd.read_csv('../data/y_train_cleaned.csv')
 
-# drop_indices = np.random.choice(x_clean.index, 834083, replace=False)
-# x_clean = x_clean.drop(drop_indices)
-# y_clean = y_clean.drop(drop_indices)
+drop_indices = np.random.choice(x_clean.index, int(len(x_clean) * 0.9), replace=False)
+x_clean = x_clean.drop(drop_indices)
+y_clean = y_clean.drop(drop_indices)
 
 # TODO: Deal with the Address. Maybe we can use it in a useful manner
 x_clean.drop(['Address'], inplace=True, axis=1)
